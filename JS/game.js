@@ -144,3 +144,4 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     targets.push(target);
   }
+});
