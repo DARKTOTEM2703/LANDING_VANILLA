@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Creativo | Desarrollador Mid-Level</title>
+    <meta name="description" content="CV interactivo con animaciones avanzadas para desarrollador web mid-level">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- GSAP para animaciones (cargado desde CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+</head>
+
+<body>
+    <!-- Cursor personalizado -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas" class="particles-canvas"></canvas>
+
+    <!-- Botón de cambio de tema -->
+    <button class="theme-toggle" aria-label="Cambiar tema">
+        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+    </button>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="glitch-container">
+            <h1 class="glitch" data-text="DESARROLLADOR">DESARROLLADOR</h1>
+            <h2 class="glitch-subtitle" data-text="MID-LEVEL">MID-LEVEL</h2>
+        </div>
+
+        <div class="hero-content animate-in">
+            <p class="hero-description">Transformando ideas en experiencias digitales únicas</p>
+
+            <div class="hero-cta">
+                <button class="primary-btn interactive" data-scroll-to="contact">Contáctame</button>
+                <button class="secondary-btn interactive" data-scroll-to="projects">Ver Proyectos</button>
+            </div>
+        </div>
+
+        <div class="scroll-indicator interactive" data-scroll-to="about">
+            <span>Scroll</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="scroll-icon">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2 class="section-title">Sobre Mí</h2>
+
+        <div class="about-content">
+            <div class="about-image animate-in">
+                <div class="image-glitch-container">
+                    <div class="image-glitch"></div>
+                </div>
+            </div>
+
+            <div class="about-text animate-in">
+                <p>
+                    Soy un desarrollador web mid-level apasionado por crear experiencias digitales únicas y memorables.
+                    Mi
+                    enfoque combina diseño creativo con código limpio y eficiente.
+                </p>
+                <p>
+                    Especializado en tecnologías frontend, disfruto transformando conceptos complejos en interfaces
+                    intuitivas
+                    y atractivas que cautivan a los usuarios.
+                </p>
+
+                <div class="tech-stack">
+                    <span class="tech-tag interactive">HTML5</span>
+                    <span class="tech-tag interactive">CSS3</span>
+                    <span class="tech-tag interactive">JavaScript</span>
+                    <span class="tech-tag interactive">Angular</span>
+                    <span class="tech-tag interactive">GSAP</span>
+                    <span class="tech-tag interactive">Canvas</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-cv-container animate-in">
+            <h3>¿Prefieres un formato tradicional?</h3>
+            <p>Descarga mi CV en formato PDF o imprímelo directamente.</p>
+
+            <div class="download-buttons">
+                <a href="#" class="download-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <path d="M12 18v-6"></path>
+                        <path d="m9 15 3 3 3-3"></path>
+                    </svg>
+                    <span>Descargar PDF</span>
+                </a>
+
+                <button class="download-btn" onclick="window.print()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect width="12" height="8" x="6" y="14"></rect>
+                    </svg>
+                    <span>Imprimir CV</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <h2 class="section-title">Experiencia</h2>
+
+        <div class="timeline">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">2022 - Presente</div>
+                    <h3 class="timeline-title">Desarrollador Frontend</h3>
+                    <p class="timeline-company">Estudio Creativo Digital</p>
+                    <p class="timeline-description">
+                        Desarrollo de interfaces de usuario innovadoras utilizando HTML, CSS y JavaScript.
+                        Implementación de
+                        animaciones avanzadas y experiencias interactivas para clientes de diversos sectores.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-tag small">JavaScript</span>
+                        <span class="tech-tag small">Angular</span>
+                        <span class="tech-tag small">GSAP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">2020 - 2022</div>
+                    <h3 class="timeline-title">Desarrollador Web Junior</h3>
+                    <p class="timeline-company">Agencia Digital Innovadora</p>
+                    <p class="timeline-description">
+                        Desarrollo de sitios web responsivos y mantenimiento de proyectos existentes. Colaboración en
+                        equipos
+                        multidisciplinarios para crear soluciones web efectivas.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-tag small">HTML/CSS</span>
+                        <span class="tech-tag small">JavaScript</span>
+                        <span class="tech-tag small">jQuery</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">2019 - 2020</div>
+                    <h3 class="timeline-title">Practicante de Desarrollo Web</h3>
+                    <p class="timeline-company">Startup Tecnológica</p>
+                    <p class="timeline-description">
+                        Asistencia en el desarrollo de componentes frontend y aprendizaje de buenas prácticas.
+                        Participación en
+                        proyectos de diseño web y optimización de interfaces.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-tag small">HTML/CSS</span>
+                        <span class="tech-tag small">JavaScript</span>
+                        <span class="tech-tag small">Diseño UI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <h2 class="section-title">Habilidades</h2>
+
+        <div class="skills-container">
+            <div class="skills-category animate-in">
+                <div class="category-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </div>
+                <h3 class="category-title">Frontend</h3>
+
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">HTML/CSS</span>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="95%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Angular</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">GSAP/Animaciones</span>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category animate-in">
+                <div class="category-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                        <line x1="9" y1="2" x2="9" y2="4"></line>
+                        <line x1="15" y1="2" x2="15" y2="4"></line>
+                        <line x1="9" y1="20" x2="9" y2="22"></line>
+                        <line x1="15" y1="20" x2="15" y2="22"></line>
+                        <line x1="20" y1="9" x2="22" y2="9"></line>
+                        <line x1="20" y1="14" x2="22" y2="14"></line>
+                        <line x1="2" y1="9" x2="4" y2="9"></line>
+                        <line x1="2" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                </div>
+                <h3 class="category-title">Herramientas</h3>
+
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Git</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Webpack</span>
+                            <span class="skill-percentage">75%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">NPM/Yarn</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">VS Code</span>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category animate-in">
+                <div class="category-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="13.5" cy="6.5" r="2.5"></circle>
+                        <circle cx="19" cy="17" r="2"></circle>
+                        <circle cx="5" cy="17" r="2"></circle>
+                        <path d="M13.5 9v3a5 5 0 0 0 5 5h.5"></path>
+                        <path d="M5 17h.5a5 5 0 0 0 5-5v-3"></path>
+                    </svg>
+                </div>
+                <h3 class="category-title">Diseño</h3>
+
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">UI/UX</span>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Figma</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Adobe XD</span>
+                            <span class="skill-percentage">75%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Photoshop</span>
+                            <span class="skill-percentage">70%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress" data-percentage="70%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications-section">
+        <h2 class="section-title">Certificaciones</h2>
+
+        <div class="certifications-container">
+            <div class="certification-card animate-in">
+                <div class="certification-header">
+                    <div class="certification-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <div class="certification-title">
+                        <h3>Desarrollo Web Frontend</h3>
+                        <p>Platzi</p>
+                    </div>
+                </div>
+                <div class="certification-body">
+                    <p>Certificación en desarrollo web frontend con HTML, CSS y JavaScript. Incluye técnicas avanzadas
+                        de animación y diseño responsivo.</p>
+                </div>
+                <div class="certification-footer">
+                    <div class="certification-date">Diciembre 2022</div>
+                    <a href="#" class="view-certificate" target="_blank" rel="noopener noreferrer">
+                        Ver certificado
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="certification-card animate-in">
+                <div class="certification-header">
+                    <div class="certification-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                            <rect x="9" y="9" width="6" height="6"></rect>
+                            <line x1="9" y1="2" x2="9" y2="4"></line>
+                            <line x1="15" y1="2" x2="15" y2="4"></line>
+                            <line x1="9" y1="20" x2="9" y2="22"></line>
+                            <line x1="15" y1="20" x2="15" y2="22"></line>
+                            <line x1="20" y1="9" x2="22" y2="9"></line>
+                            <line x1="20" y1="14" x2="22" y2="14"></line>
+                            <line x1="2" y1="9" x2="4" y2="9"></line>
+                            <line x1="2" y1="14" x2="4" y2="14"></line>
+                        </svg>
+                    </div>
+                    <div class="certification-title">
+                        <h3>Angular Avanzado</h3>
+                        <p>Udemy</p>
+                    </div>
+                </div>
+                <div class="certification-body">
+                    <p>Curso completo de Angular que cubre componentes, servicios, routing, formularios reactivos y
+                        optimización de rendimiento.</p>
+                </div>
+                <div class="certification-footer">
+                    <div class="certification-date">Marzo 2023</div>
+                    <a href="#" class="view-certificate" target="_blank" rel="noopener noreferrer">
+                        Ver certificado
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="certification-card animate-in">
+                <div class="certification-header">
+                    <div class="certification-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="13.5" cy="6.5" r="2.5"></circle>
+                            <circle cx="19" cy="17" r="2"></circle>
+                            <circle cx="5" cy="17" r="2"></circle>
+                            <path d="M13.5 9v3a5 5 0 0 0 5 5h.5"></path>
+                            <path d="M5 17h.5a5 5 0 0 0 5-5v-3"></path>
+                    </div>
+                    <div class="certification-title">
+                        <h3>Diseño UI/UX</h3>
+                        <p>Coursera</p>
+                    </div>
+                </div>
+                <div class="certification-body">
+                    <p>Certificación en principios de diseño de interfaces y experiencia de usuario, incluyendo
+                        prototipado y testing con usuarios.</p>
+                </div>
+                <div class="certification-footer">
+                    <div class="certification-date">Julio 2023</div>
+                    <a href="#" class="view-certificate" target="_blank" rel="noopener noreferrer">
+                        Ver certificado
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="certification-card animate-in">
+                <div class="certification-header">
+                    <div class="certification-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="certification-title">
+                        <h3>JavaScript Moderno</h3>
+                        <p>freeCodeCamp</p>
+                    </div>
+                </div>
+                <div class="certification-body">
+                    <p>Certificación en JavaScript ES6+, programación funcional, promesas, async/await y patrones de
+                        diseño modernos.</p>
+                </div>
+                <div class="certification-footer">
+                    <div class="certification-date">Septiembre 2022</div>
+                    <a href="#" class="view-certificate" target="_blank" rel="noopener noreferrer">
+                        Ver certificado
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">Proyectos</h2>
+
+        <div class="projects-grid">
+            <!-- Proyecto 1 -->
+            <div class="project-card animate-in interactive">
+                <div class="project-image">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Proyecto 1</h3>
+                            <p>Sitio web interactivo con animaciones avanzadas</p>
+                            <a href="#" class="view-project">
+                                Ver Proyecto
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="project-card animate-in interactive">
+                <div class="project-image">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Proyecto 2</h3>
+                            <p>Sitio web interactivo con animaciones avanzadas</p>
+                            <a href="#" class="view-project">
+                                Ver Proyecto
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 3 -->
+            <div class="project-card animate-in interactive">
+                <div class="project-image">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Proyecto 3</h3>
+                            <p>Sitio web interactivo con animaciones avanzadas</p>
+                            <a href="#" class="view-project">
+                                Ver Proyecto
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 4 -->
+            <div class="project-card animate-in interactive">
+                <div class="project-image">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Proyecto 4</h3>
+                            <p>Sitio web interactivo con animaciones avanzadas</p>
+                            <a href="#" class="view-project">
+                                Ver Proyecto
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <h2 class="section-title">Testimonios</h2>
+
+        <div class="testimonials-container">
+            <div class="testimonial-card animate-in">
+                <p class="testimonial-quote" id="testimonial-quote">
+                    Trabajar con este desarrollador fue una experiencia excepcional. Su atención al detalle y capacidad
+                    para transformar ideas en interfaces interactivas es impresionante.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://via.placeholder.com/60" alt="Ana Martínez" />
+                    </div>
+                    <div class="author-info">
+                        <h4 id="testimonial-author">Ana Martínez</h4>
+                        <p id="testimonial-position">Directora de Diseño, Estudio Creativo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-nav">
+                <button class="nav-btn prev" id="prev-testimonial" aria-label="Testimonio anterior">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6"></path>
+                    </svg>
+                </button>
+
+                <div class="testimonial-dot active" data-index="0"></div>
+                <div class="testimonial-dot" data-index="1"></div>
+                <div class="testimonial-dot" data-index="2"></div>
+
+                <button class="nav-btn next" id="next-testimonial" aria-label="Testimonio siguiente">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Game Section -->
+    <section id="game" class="game-section">
+        <h2 class="section-title">¡Juega Conmigo!</h2>
+
+        <div class="game-container">
+            <div class="game-intro animate-in">
+                <h3>Atrapa las Estrellas</h3>
+                <p>
+                    Un pequeño juego que demuestra mis habilidades con Canvas y JavaScript. Mueve el mouse para
+                    controlar la
+                    nave y atrapa las estrellas que caen.
+                </p>
+            </div>
+
+            <div class="game-canvas-container animate-in">
+                <canvas id="game-canvas" class="game-canvas"></canvas>
+            </div>
+
+            <div class="game-controls animate-in">
+                <button class="game-btn start" id="start-game">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Iniciar Juego
+                </button>
+
+                <button class="game-btn pause" id="pause-game" style="display: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="4" height="16" x="6" y="4"></rect>
+                        <rect width="4" height="16" x="14" y="4"></rect>
+                    </svg>
+                    Pausar
+                </button>
+
+                <button class="game-btn reset" id="reset-game">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6"></path>
+                        <path d="M2.5 12a10 10 0 0 1 17-7l2-2"></path>
+                        <path d="M2.5 22v-6h6"></path>
+                        <path d="M22 12a10 10 0 0 1-17 7l-2 2"></path>
+                    </svg>
+                    Reiniciar
+                </button>
+            </div>
+
+            <div class="game-score animate-in">
+                Puntuación: <span id="game-score">0</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Contacto</h2>
+
+        <div class="contact-container">
+            <div class="contact-info animate-in">
+                <h3>¡Hablemos!</h3>
+                <p>
+                    Estoy interesado en oportunidades freelance y proyectos desafiantes. Si tienes una propuesta o
+                    simplemente
+                    quieres saludar, no dudes en contactarme.
+                </p>
+
+                <div class="contact-links">
+                    <div class="contact-link interactive">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <span id="contact-email">email@example.com</span>
+                        <button id="copy-email" class="copy-email-btn" aria-label="Copiar email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" id="copy-icon">
+                                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                            </svg>
+                            <span class="copy-tooltip" id="copy-tooltip">Copiar email</span>
+                        </button>
+                    </div>
+
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                        class="contact-link interactive">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        <span>github.com/username</span>
+                    </a>
+
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                        class="contact-link interactive">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <span>linkedin.com/in/username</span>
+                    </a>
+
+                    <div class="contact-alternatives">
+                        <p>Otras formas de contacto:</p>
+                        <div class="alternative-buttons">
+                            <a href="mailto:email@example.com?subject=Contacto%20desde%20CV%20Web&body=Hola,%20vi%20tu%20CV%20web%20y%20me%20gustaría%20contactarte."
+                                class="alternative-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                                <span>Abrir en cliente de email</span>
+                            </a>
+                            <a href="https://wa.me/1234567890?text=Hola,%20vi%20tu%20CV%20web%20y%20me%20gustaría%20contactarte."
+                                target="_blank" rel="noopener noreferrer" class="alternative-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
+                                    <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z"></path>
+                                    <path d="M14 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z"></path>
+                                    <path d="M9 15h6"></path>
+                                </svg>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="contact-form" class="contact-form animate-in">
+                <div class="form-header">
+                    <h3>Envíame un mensaje</h3>
+                    <p class="form-description">
+                        Este formulario utiliza
+                        <a href="https://formspree.io" target="_blank" rel="noopener noreferrer">
+                            Formspree
+                        </a>
+                        para procesar los mensajes sin necesidad de backend.
+                    </p>
+                </div>
+
+                <div id="form-status" class="form-status" style="display: none;"></div>
+
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="text" id="name" class="form-input" placeholder=" " required />
+                        <label for="name" class="form-label">Nombre</label>
+                        <div class="input-border"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="email" id="email" class="form-input" placeholder=" " required />
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-border"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-container">
+                        <textarea id="message" class="form-input form-textarea" placeholder=" " required></textarea>
+                        <label for="message" class="form-label">Mensaje</label>
+                        <div class="input-border"></div>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn" class="submit-btn interactive">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m22 2-7 20-4-9-9-4Z"></path>
+                        <path d="M22 2 11 13"></path>
+                    </svg>
+                    <span>Enviar Mensaje</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© <span id="current-year"></span> | Diseñado y desarrollado con pasión</p>
+
+            <div class="social-links">
+                <a href="#" class="social-link interactive">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" class="social-link interactive">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="#" class="social-link interactive">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/theme.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
