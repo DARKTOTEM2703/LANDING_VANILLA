@@ -760,7 +760,10 @@ section {
 /* Skills Section */
 .skills-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Corrección: especificar 2 columnas */
+  grid-template-columns: repeat(
+    2,
+    1fr
+  ); /* Corrección: especificar 2 columnas */
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
@@ -1498,14 +1501,39 @@ section {
     left: 40px;
   }
 
-  .timeline-item.left::before,
-  .timeline-item.right::before {
-    left: 31px;
+  /* MODIFICAR ESTA PARTE - Corregir la posición de las bolitas */
+  .timeline-item::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    top: 30px;
+    left: 30px !important; /* Forzar posición izquierda para ambos tipos */
+    box-shadow: 0 0 10px var(--primary-color);
+    z-index: 1;
   }
 
-  .timeline-item.left .timeline-content::after,
-  .timeline-item.right .timeline-content::after {
-    display: none;
+  /* Eliminar las reglas específicas para left y right que causan el problema */
+  .timeline-item.left::after,
+  .timeline-item.right::after {
+    left: 10px !important; /* Alinear ambas bolitas sobre la línea */
+  }
+
+  /* Ajustar los dots en pantallas más pequeñas */
+  @media (max-width: 480px) {
+    .timeline-line {
+      left: 20px;
+    }
+
+    .timeline-item {
+      padding-left: 50px;
+    }
+
+    .timeline-item::after {
+      left: 10px !important; /* Ajustar para pantallas muy pequeñas */
+    }
   }
 }
 
