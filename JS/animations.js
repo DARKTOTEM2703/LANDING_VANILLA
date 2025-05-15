@@ -469,6 +469,80 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       }
     );
+
+    // Animación para las tarjetas de experiencia en timeline
+    // Esta función debe estar dentro del bloque donde inicializas GSAP
+    // Seleccionar todas las tarjetas de timeline izquierda
+    gsap.utils.toArray(".timeline-item.left").forEach((card) => {
+      gsap.fromTo(
+        card,
+        {
+          x: -100,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100px",
+            toggleActions: "play none none reset",
+            // markers: true, // Útil para depuración, quitar en producción
+          },
+        }
+      );
+    });
+
+    // Seleccionar todas las tarjetas de timeline derecha
+    gsap.utils.toArray(".timeline-item.right").forEach((card) => {
+      gsap.fromTo(
+        card,
+        {
+          x: 100,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100px",
+            toggleActions: "play none none reset",
+            // markers: true, // Útil para depuración, quitar en producción
+          },
+        }
+      );
+    });
+
+    // Versión alternativa con animación secuencial
+    // Todas las tarjetas de timeline
+    gsap.utils.toArray(".timeline-item").forEach((card, i) => {
+      const direction = card.classList.contains("left") ? -100 : 100;
+
+      gsap.fromTo(
+        card,
+        {
+          x: direction,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          delay: i * 0.2, // Retraso secuencial para efecto cascada
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100px",
+            toggleActions: "play none none reset",
+          },
+        }
+      );
+    });
   }
 
   // Efecto glitch específico para el nombre Jafeth Gamboa
