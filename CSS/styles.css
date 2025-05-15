@@ -2035,3 +2035,15 @@ section {
     margin-bottom: 15px; /* Menos espacio entre habilidades */
   }
 }
+
+/* Añade esto a tu archivo CSS */
+.g-recaptcha {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 480px) {
+  .g-recaptcha {
+    transform: scale(0.85);
+    transform-origin: 0 0;
+  }
+}
