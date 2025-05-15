@@ -182,26 +182,68 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     // Animaciones con estilo hacker/programador
-    // Efecto terminal escribiendo para textos
+    // Efecto terminal escribiendo para textos (con loop inverso)
     function typeWriter(element, delay = 0) {
       const text = element.textContent;
       element.textContent = "";
       let i = 0;
+      let isErasing = false;
 
-      gsap.to(
-        {},
-        {
-          duration: 0.05,
-          repeat: text.length - 1,
-          delay: delay,
-          onRepeat: () => {
-            if (i < text.length) {
-              element.textContent += text.charAt(i);
-              i++;
+      function animateText() {
+        // Limpiar cualquier instancia previa
+        gsap.killTweensOf({});
+
+        if (!isErasing) {
+          // Escribir el texto
+          gsap.to(
+            {},
+            {
+              duration: 0.05,
+              repeat: text.length - 1,
+              delay: delay,
+              onRepeat: () => {
+                if (i < text.length) {
+                  element.textContent += text.charAt(i);
+                  i++;
+                }
+              },
+              onComplete: () => {
+                // Pausa antes de comenzar a borrar
+                setTimeout(() => {
+                  isErasing = true;
+                  animateText();
+                }, 2000);
+              },
             }
-          },
+          );
+        } else {
+          // Borrar el texto
+          gsap.to(
+            {},
+            {
+              duration: 0.08,
+              repeat: text.length - 1,
+              delay: 0.5,
+              onRepeat: () => {
+                if (i > 0) {
+                  i--;
+                  element.textContent = text.substring(0, i);
+                }
+              },
+              onComplete: () => {
+                // Pausa antes de comenzar a escribir de nuevo
+                setTimeout(() => {
+                  isErasing = false;
+                  animateText();
+                }, 1000);
+              },
+            }
+          );
         }
-      );
+      }
+
+      // Comenzar la animación
+      animateText();
     }
 
     // Animación para barras de progreso con estilo terminal
@@ -380,20 +422,23 @@ document.addEventListener("DOMContentLoaded", function () {
           const glitchTitle = document.querySelector(".glitch");
           const subtitle = document.querySelector(".glitch-subtitle");
 
-          // Efecto de glitch periódico
-          if (glitchTitle) {
-            setInterval(() => {
-              glitchTitle.classList.add("active-glitch");
-              setTimeout(() => {
-                glitchTitle.classList.remove("active-glitch");
-              }, 200);
-            }, 4000);
-          }
+          // Elimina esta parte para evitar conflictos
+          // if (glitchTitle) {
+          //   setInterval(() => {
+          //     glitchTitle.classList.add("active-glitch");
+          //     setTimeout(() => {
+          //       glitchTitle.classList.remove("active-glitch");
+          //     }, 200);
+          //   }, 4000);
+          // }
 
           // Efecto de terminal escribiendo para el subtítulo
           if (subtitle) {
             typeWriter(subtitle, 0.8);
           }
+
+          // Activar la función aquí
+          applyNameGlitch();
         },
       }
     );
@@ -425,4 +470,36 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     );
   }
+
+  // Efecto glitch específico para el nombre Jafeth Gamboa
+  function applyNameGlitch() {
+    const nameElement = document.querySelector(".glitch"); // Asegúrate de que tu nombre tenga esta clase
+
+    if (nameElement) {
+      // Efecto de glitch más intenso y frecuente
+      setInterval(() => {
+        nameElement.classList.add("active-glitch");
+
+        // Múltiples pulsos de glitch en secuencia
+        setTimeout(() => {
+          nameElement.classList.remove("active-glitch");
+          setTimeout(() => {
+            nameElement.classList.add("active-glitch");
+            setTimeout(() => {
+              nameElement.classList.remove("active-glitch");
+              setTimeout(() => {
+                nameElement.classList.add("active-glitch");
+                setTimeout(() => {
+                  nameElement.classList.remove("active-glitch");
+                }, 100);
+              }, 100);
+            }, 50);
+          }, 50);
+        }, 200);
+      }, 3000);
+    }
+  }
+
+  // Llama a esta función al final de tus inicializaciones
+  // applyNameGlitch();
 });

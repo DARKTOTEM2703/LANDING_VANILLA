@@ -148,10 +148,33 @@ section {
 .glitch,
 .glitch-subtitle {
   position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #fff;
   font-weight: 900;
   text-transform: uppercase;
-  color: var(--text-color);
-  animation: glitch 2s infinite;
+  letter-spacing: 2px;
+  z-index: 1;
+  width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+  text-align: center; /* Centrar el texto */
+  overflow: visible; /* Permitir que el efecto se desborde sin cortar */
+}
+
+.glitch-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  text-align: center;
+  padding: 0 15px;
+}
+
+/* Asegurar que los pseudoelementos que crean el efecto tengan suficiente ancho */
+.glitch::before,
+.glitch::after,
+.glitch-subtitle::before,
+.glitch-subtitle::after {
+  width: 100%;
+  text-align: center;
 }
 
 .glitch {
@@ -178,17 +201,17 @@ section {
 }
 
 .glitch::before {
-  left: 2px;
-  text-shadow: -2px 0 var(--secondary-color);
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim 5s infinite linear alternate-reverse;
+  left: 3px;
+  text-shadow: -3px 0 var(--secondary-color);
+  clip: rect(44px, 550px, 56px, 0);
+  animation: glitch-anim 3s infinite linear alternate-reverse;
 }
 
 .glitch::after {
-  left: -2px;
-  text-shadow: -2px 0 var(--primary-color);
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim2 5s infinite linear alternate-reverse;
+  left: -3px;
+  text-shadow: 3px 0 var(--primary-color);
+  clip: rect(44px, 550px, 56px, 0);
+  animation: glitch-anim2 4s infinite linear alternate-reverse;
 }
 
 .glitch-subtitle::before {
@@ -368,16 +391,21 @@ section {
 
 /* About Section */
 .about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .about-image {
   position: relative;
   width: 100%;
-  height: 400px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .image-glitch-container {
@@ -450,43 +478,6 @@ section {
   }
 }
 
-.image-glitch {
-  width: 100%;
-  height: 100%;
-  background-image: url("https://via.placeholder.com/400");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.image-glitch::before,
-.image-glitch::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://via.placeholder.com/400");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8;
-}
-
-.image-glitch::before {
-  left: 2px;
-  background-color: var(--primary-color);
-  background-blend-mode: screen;
-  animation: glitch-image 2s infinite linear alternate-reverse;
-}
-
-.image-glitch::after {
-  left: -2px;
-  background-color: var(--secondary-color);
-  background-blend-mode: multiply;
-  animation: glitch-image2 3s infinite linear alternate-reverse;
-}
-
 @keyframes glitch-image {
   0% {
     transform: translate(0);
@@ -542,11 +533,13 @@ section {
 }
 
 .about-text p {
-  margin-bottom: 20px;
-  line-height: 1.8;
-  font-size: 1.1rem;
-  color: var(--text-color);
-  opacity: 0.9;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tech-stack {
+  justify-content: center;
 }
 
 .tech-stack {
@@ -817,9 +810,6 @@ section {
 }
 
 /* Efecto de pulsación al completar la barra */
-.progress.completed {
-  animation: pulse 2s infinite;
-}
 
 @keyframes pulse {
   0%,
@@ -1114,21 +1104,22 @@ section {
 
 /* Botón de cambio de tema */
 .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
+  /* Colocar a la derecha */
+  position: fixed; /* Cambiar a posición fija */
+  top: 10px; /* Posicionarlo en la parte superior */
+  right: 40px; /* Pegado a la derecha */
   background-color: var(--bg-light);
   border: 1px solid var(--primary-color);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 40px; /* Reducido ligeramente para mejor integración */
+  height: 40px; /* Reducido ligeramente para mejor integración */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 0 10px rgba(10, 230, 180, 0.3);
+  margin-left: 0; /* Eliminar el margen izquierdo */
 }
 
 .theme-toggle:hover {
@@ -1140,9 +1131,6 @@ section {
 }
 
 /* Animación para el botón de tema */
-.theme-toggle-animated {
-  animation: pulse 0.5s;
-}
 
 @keyframes pulse {
   0% {
@@ -1295,201 +1283,8 @@ section {
 }
 
 /* Estilos para la sección de certificaciones */
-.certifications-section {
-  background-color: var(--bg-dark);
-}
-
-.certifications-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.certification-card {
-  background-color: var(--bg-light);
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
-}
-
-.certification-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border-color: var(--primary-color);
-}
-
-.certification-header {
-  padding: 20px;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.certification-logo {
-  width: 50px;
-  height: 50px;
-  background-color: var(--bg-color);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-color);
-}
-
-.certification-title {
-  flex: 1;
-}
-
-.certification-title h3 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-  color: var(--primary-color);
-}
-
-.certification-title p {
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
-.certification-body {
-  padding: 20px;
-}
-
-.certification-body p {
-  margin-bottom: 15px;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.certification-footer {
-  padding: 15px 20px;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.certification-date {
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.view-certificate {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--primary-color);
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.view-certificate:hover {
-  color: var(--secondary-color);
-}
 
 /* Estilos para la sección de testimonios */
-.testimonials-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.testimonials-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.testimonial-card {
-  background-color: var(--bg-light);
-  border-radius: 10px;
-  padding: 30px;
-  border: 1px solid var(--border-color);
-  margin: 0 auto;
-  max-width: 800px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border-color: var(--primary-color);
-}
-
-.testimonial-quote {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  position: relative;
-  padding-left: 30px;
-}
-
-.testimonial-quote::before {
-  content: '"';
-  position: absolute;
-  left: 0;
-  top: -10px;
-  font-size: 3rem;
-  color: var(--primary-color);
-  opacity: 0.5;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.author-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--primary-color);
-}
-
-.author-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.author-info h4 {
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  color: var(--primary-color);
-}
-
-.author-info p {
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
-.testimonial-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.testimonial-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--border-color);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.testimonial-dot.active {
-  background-color: var(--primary-color);
-  transform: scale(1.2);
-}
 
 /* Estilos para el juego interactivo */
 .game-section {
@@ -1781,7 +1576,6 @@ section {
 
   .project-card,
   .skills-category,
-  .certification-card,
   .contact-info {
     border: 1px solid #ddd;
     box-shadow: none;
@@ -1824,7 +1618,7 @@ section {
 }
 
 /* Mejorar visibilidad en modo oscuro */
-[data-theme="dark"] .certification-card,
+
 [data-theme="dark"] .project-card,
 [data-theme="dark"] .skills-category,
 [data-theme="dark"] .timeline-content,
@@ -2042,5 +1836,47 @@ section {
 
   .navbar-links.active {
     right: 0;
+  }
+}
+
+/* Mejorar el diseño responsive para el título y subtítulo con glitch */
+.glitch-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  text-align: center;
+  padding: 0 15px;
+}
+
+.glitch,
+.glitch-subtitle {
+  max-width: 100%;
+  overflow: visible;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* Ajustar tamaños de fuente para dispositivos móviles */
+@media (max-width: 768px) {
+  .glitch {
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+  }
+
+  .glitch-subtitle {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glitch {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+  }
+
+  .glitch-subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
   }
 }
