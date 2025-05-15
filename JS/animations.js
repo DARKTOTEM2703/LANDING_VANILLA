@@ -180,5 +180,249 @@ document.addEventListener("DOMContentLoaded", function () {
       { scale: 0, rotation: -180 },
       { scale: 1, rotation: 0, duration: 1, ease: "back.out(1.7)" }
     );
+
+    // Animaciones con estilo hacker/programador
+    // Efecto terminal escribiendo para textos
+    function typeWriter(element, delay = 0) {
+      const text = element.textContent;
+      element.textContent = "";
+      let i = 0;
+
+      gsap.to(
+        {},
+        {
+          duration: 0.05,
+          repeat: text.length - 1,
+          delay: delay,
+          onRepeat: () => {
+            if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+            }
+          },
+        }
+      );
+    }
+
+    // Animación para barras de progreso con estilo terminal
+    function animateProgressBars() {
+      const progressBars = document.querySelectorAll(".progress");
+
+      progressBars.forEach((bar, index) => {
+        const percentage = bar.getAttribute("data-percentage");
+        const parent = bar.closest(".skill-item");
+        const label = parent ? parent.querySelector(".skill-percentage") : null;
+
+        if (percentage) {
+          // Efecto pre-animación: caracteres aleatorios
+          if (label) {
+            const originalText = label.textContent;
+            let counter = 0;
+
+            gsap.to(
+              {},
+              {
+                scrollTrigger: {
+                  trigger: bar,
+                  start: "top bottom-=100px",
+                },
+                duration: 0.05,
+                repeat: 10,
+                onRepeat: () => {
+                  counter++;
+                  const randomChars = "01".split("");
+                  let randomString = "";
+                  for (let i = 0; i < 3; i++) {
+                    randomString +=
+                      randomChars[
+                        Math.floor(Math.random() * randomChars.length)
+                      ];
+                  }
+                  label.textContent = randomString + "%";
+
+                  if (counter >= 10) {
+                    label.textContent = originalText;
+                  }
+                },
+              }
+            );
+          }
+
+          // Animación de llenado de barra con efecto escaneado
+          gsap.to(bar, {
+            width: percentage,
+            scrollTrigger: {
+              trigger: bar,
+              start: "top bottom-=100px",
+              toggleActions: "play none none reset",
+            },
+            duration: 1.5,
+            ease: "steps(20)", // Efecto de pasos tipo terminal
+            onComplete: function () {
+              // Añadir efecto de escaneo después de completar
+              bar.classList.add("terminal-scan");
+
+              // Efecto de glitch al completar
+              if (label) {
+                gsap.to(label, {
+                  keyframes: [
+                    { x: -3, opacity: 0.8, duration: 0.1 },
+                    { x: 3, opacity: 1, duration: 0.1 },
+                    { x: 0, opacity: 1, duration: 0.1 },
+                  ],
+                  repeat: 2,
+                  yoyo: true,
+                });
+              }
+            },
+          });
+        }
+      });
+    }
+
+    // Animación para títulos de sección con estilo hacker
+    gsap.utils.toArray(".section-title").forEach((title) => {
+      // Guardar texto original
+      const originalText = title.textContent;
+
+      // Animación de entrada con distorsión
+      gsap.fromTo(
+        title,
+        { opacity: 0, x: -30 },
+        {
+          scrollTrigger: {
+            trigger: title,
+            start: "top bottom-=150",
+            toggleActions: "play none none reset",
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          onStart: function () {
+            // Efecto de caracteres aleatorios
+            let iteration = 0;
+            const maxIterations = 10;
+
+            const interval = setInterval(() => {
+              let scrambledText = "";
+
+              // Mezclar caracteres con símbolos de código
+              for (let i = 0; i < originalText.length; i++) {
+                if (iteration / maxIterations > i / originalText.length) {
+                  scrambledText += originalText[i];
+                } else {
+                  scrambledText += "!@#$%^&*<>/\\"[
+                    Math.floor(Math.random() * 14)
+                  ];
+                }
+              }
+
+              title.textContent = scrambledText;
+
+              if (++iteration >= maxIterations) {
+                clearInterval(interval);
+                title.textContent = originalText;
+              }
+            }, 80);
+          },
+        }
+      );
+    });
+
+    // Animar categorías de habilidades con estilo de terminal
+    gsap.utils.toArray(".skills-category").forEach((category, index) => {
+      gsap.from(category, {
+        scrollTrigger: {
+          trigger: category,
+          start: "top bottom-=100",
+          toggleActions: "play none none reset",
+        },
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        delay: index * 0.2,
+        ease: "power2.out",
+        onStart: function () {
+          // Efecto de línea de terminal apareciendo
+          const categoryTitle = category.querySelector("h3");
+          if (categoryTitle) {
+            gsap.fromTo(
+              categoryTitle,
+              { opacity: 0 },
+              {
+                opacity: 1,
+                duration: 0.4,
+                onComplete: function () {
+                  // Simular comando de terminal
+                  const originalText = categoryTitle.textContent;
+                  categoryTitle.innerHTML =
+                    '<span class="terminal-prompt">> </span>' + originalText;
+                },
+              }
+            );
+          }
+        },
+      });
+    });
+
+    // Iniciar animación de barras de progreso
+    animateProgressBars();
+
+    // Efecto de pantalla inicial (hero section)
+    gsap.fromTo(
+      ".glitch-container",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1.2,
+        onComplete: function () {
+          const glitchTitle = document.querySelector(".glitch");
+          const subtitle = document.querySelector(".glitch-subtitle");
+
+          // Efecto de glitch periódico
+          if (glitchTitle) {
+            setInterval(() => {
+              glitchTitle.classList.add("active-glitch");
+              setTimeout(() => {
+                glitchTitle.classList.remove("active-glitch");
+              }, 200);
+            }, 4000);
+          }
+
+          // Efecto de terminal escribiendo para el subtítulo
+          if (subtitle) {
+            typeWriter(subtitle, 0.8);
+          }
+        },
+      }
+    );
+
+    // Animar botón de tema con glitch
+    gsap.fromTo(
+      ".theme-toggle",
+      { scale: 0, rotation: -90 },
+      {
+        scale: 1,
+        rotation: 0,
+        duration: 0.7,
+        ease: "back.out(1.7)",
+        onComplete: function () {
+          // Añadir efecto de glitch ocasional
+          const themeBtn = document.querySelector(".theme-toggle");
+          if (themeBtn) {
+            setInterval(() => {
+              gsap.to(themeBtn, {
+                keyframes: [
+                  { x: -3, y: 2, duration: 0.1 },
+                  { x: 2, y: -2, duration: 0.1 },
+                  { x: 0, y: 0, duration: 0.1 },
+                ],
+              });
+            }, 5000);
+          }
+        },
+      }
+    );
   }
 });
