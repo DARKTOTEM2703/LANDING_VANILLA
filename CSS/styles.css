@@ -550,6 +550,17 @@ section {
 }
 
 .tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+}
+
+.tech-tag svg {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.tech-tag {
   padding: 8px 16px;
   background-color: rgba(10, 230, 180, 0.1);
   color: var(--primary-color);
