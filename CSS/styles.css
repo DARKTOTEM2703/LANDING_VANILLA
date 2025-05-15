@@ -658,9 +658,8 @@ section {
 
 .timeline-header {
   display: flex;
-  gap: 15px;
-  margin-bottom: 15px;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .company-logo {
@@ -673,6 +672,7 @@ section {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin-left: auto; /* Empuja el logo hacia la derecha */
 }
 
 .company-logo img {
@@ -683,6 +683,8 @@ section {
 
 .timeline-info {
   flex: 1;
+  text-align: left;
+  margin-right: 15px;
 }
 
 .timeline-date {
@@ -749,12 +751,6 @@ section {
   transform: translateY(-2px);
   background-color: rgba(var(--primary-rgb), 0.1);
   border-color: var(--primary-color);
-}
-
-.tech-tag.small svg {
-  width: 14px;
-  height: 14px;
-  color: var(--primary-color);
 }
 
 /* Skills Section */
@@ -894,11 +890,15 @@ section {
 }
 
 .project-image {
-  height: 200px;
-  background-image: url("https://via.placeholder.com/300x200");
+  width: 100%;
+  height: 250px; /* Altura fija para todas las tarjetas */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .image-overlay {
@@ -907,12 +907,12 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.75);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .project-card:hover .image-overlay {
@@ -950,10 +950,46 @@ section {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: rgba(10, 230, 180, 0.1);
+  border: 1px solid transparent;
 }
 
 .view-project:hover {
   color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  background-color: rgba(255, 62, 108, 0.1);
+  transform: translateY(-2px);
+}
+
+.github-project {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: rgba(10, 230, 180, 0.1);
+  border: 1px solid transparent;
+}
+
+.github-project:hover {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  background-color: rgba(255, 62, 108, 0.1);
+  transform: translateY(-2px);
+}
+
+.github-project svg {
+  transition: all 0.3s ease;
+}
+
+.github-project:hover svg {
+  transform: rotate(5deg);
 }
 
 .project-info {
@@ -2045,5 +2081,133 @@ section {
   .g-recaptcha {
     transform: scale(0.85);
     transform-origin: 0 0;
+  }
+}
+
+/* Ajuste para invertir la posición del logo y el texto */
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-info {
+  text-align: left;
+  margin-right: 15px;
+}
+
+.company-logo {
+  margin-left: auto; /* Empuja el logo hacia la derecha */
+}
+
+/* Para tiempo de carga antes de que CSS se aplique completamente */
+.timeline-header .company-logo {
+  order: 2;
+}
+
+.timeline-header .timeline-info {
+  order: 1;
+}
+
+.project-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.view-project,
+.github-project {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: rgba(10, 230, 180, 0.1);
+  border: 1px solid transparent;
+}
+
+.view-project:hover,
+.github-project:hover {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  background-color: rgba(255, 62, 108, 0.1);
+  transform: translateY(-2px);
+}
+
+.github-project svg {
+  transition: all 0.3s ease;
+}
+
+.github-project:hover svg {
+  transform: rotate(5deg);
+}
+
+/* Mejoras para la sección de proyectos con 3 tarjetas */
+.projects-grid.improved {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1400px; /* Mayor ancho máximo */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.project-card {
+  background-color: var(--bg-light);
+  border-radius: 12px; /* Bordes más redondeados */
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: all 0.4s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-image {
+  width: 100%;
+  height: 280px; /* Altura aumentada */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+/* Estilo para proyecto destacado - opcional */
+.project-card.featured {
+  transform: scale(1.03);
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 10px 25px rgba(10, 230, 180, 0.2);
+}
+
+/* Ajustes responsive para 3 tarjetas */
+@media (max-width: 1200px) {
+  .projects-grid.improved {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid.improved {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .project-card.featured {
+    grid-column: span 1;
+  }
+
+  .project-image {
+    height: 250px;
   }
 }
