@@ -1932,3 +1932,10 @@ section {
   background-color: rgba(30, 30, 30, 0.8);
   border-color: var(--primary-color);
 }
+
+/* Agregar a tu archivo css/styles.css */
+.tech-tag img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
