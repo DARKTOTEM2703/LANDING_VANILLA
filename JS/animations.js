@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
             {},
             {
               duration: 0.05,
-              repeat: text.length - 1,
+              repeat: text.length,
               delay: delay,
               onRepeat: () => {
                 if (i < text.length) {
@@ -372,40 +372,45 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     });
 
-    // Animar categorías de habilidades con estilo de terminal
+    // Modificar la animación de las categorías de habilidades (línea ~348)
     gsap.utils.toArray(".skills-category").forEach((category, index) => {
-      gsap.from(category, {
-        scrollTrigger: {
-          trigger: category,
-          start: "top bottom-=100",
-          toggleActions: "play none none reset",
-        },
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-        delay: index * 0.2,
-        ease: "power2.out",
-        onStart: function () {
-          // Efecto de línea de terminal apareciendo
-          const categoryTitle = category.querySelector("h3");
-          if (categoryTitle) {
-            gsap.fromTo(
-              categoryTitle,
-              { opacity: 0 },
-              {
-                opacity: 1,
-                duration: 0.4,
-                onComplete: function () {
-                  // Simular comando de terminal
-                  const originalText = categoryTitle.textContent;
-                  categoryTitle.innerHTML =
-                    '<span class="terminal-prompt">> </span>' + originalText;
-                },
-              }
-            );
-          }
-        },
-      });
+      // Cambiar de gsap.from a gsap.to para evitar que desaparezcan
+      gsap.fromTo(
+        category,
+        { opacity: 0, y: 20 }, // Estado inicial
+        {
+          scrollTrigger: {
+            trigger: category,
+            start: "top bottom-=50", // Disparar la animación antes
+            toggleActions: "play none none none", // No resetear
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          delay: index * 0.15, // Reducir el retraso entre tarjetas
+          ease: "power2.out",
+          onStart: function () {
+            // Efecto de línea de terminal apareciendo
+            const categoryTitle = category.querySelector("h3");
+            if (categoryTitle) {
+              gsap.fromTo(
+                categoryTitle,
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.4,
+                  onComplete: function () {
+                    // Simular comando de terminal
+                    const originalText = categoryTitle.textContent;
+                    categoryTitle.innerHTML =
+                      '<span class="terminal-prompt">> </span>' + originalText;
+                  },
+                }
+              );
+            }
+          },
+        }
+      );
     });
 
     // Iniciar animación de barras de progreso
@@ -512,7 +517,7 @@ document.addEventListener("DOMContentLoaded", function () {
             trigger: card,
             start: "top bottom-=100px",
             toggleActions: "play none none reset",
-            // markers: true, // Útil para depuración, quitar en producción
+            // markers: true, // Útil para depuración, quitar en producciónz
           },
         }
       );

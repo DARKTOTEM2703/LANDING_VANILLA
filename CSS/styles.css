@@ -760,10 +760,12 @@ section {
 /* Skills Section */
 .skills-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* Corrección: especificar 2 columnas */
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 40px;
+  overflow: visible;
 }
 
 .skills-category {
@@ -772,12 +774,10 @@ section {
   padding: 30px;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
-}
-
-.skills-category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border-color: var(--primary-color);
+  /* Agregar altura mínima */
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .category-icon {
