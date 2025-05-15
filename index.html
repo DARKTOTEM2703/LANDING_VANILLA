@@ -19,6 +19,8 @@
     <!-- GSAP para animaciones (cargado desde CDN) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -935,6 +937,9 @@
 
                     <!-- Campo anti-spam -->
                     <input type="text" name="_gotcha" style="display: none;">
+
+                    <!-- Google reCAPTCHA -->
+                    <div class="g-recaptcha" data-sitekey="6Lc3LzwrAAAAAK1HuX8OGXAJ4Wx60ZYpG5iY2upu"></div>
 
                     <!-- Asegúrate de que este botón esté dentro del formulario -->
                     <button type="submit" id="submit-btn" class="submit-btn">

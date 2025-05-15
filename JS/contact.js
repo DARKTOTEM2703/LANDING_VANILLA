@@ -14,9 +14,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const email = document.getElementById("email").value;
       const message = document.getElementById("message").value;
 
+      // Verificar captcha
+      const captchaResponse = grecaptcha.getResponse();
+
       // Validación básica
       if (!name || !email || !message) {
         showFormStatus("error", "Por favor completa todos los campos");
+        return;
+      }
+
+      // Verificar que el captcha se haya completado
+      if (!captchaResponse) {
+        showFormStatus("error", "Por favor completa el captcha");
         return;
       }
 
