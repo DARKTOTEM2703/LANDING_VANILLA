@@ -1880,3 +1880,44 @@ section {
     letter-spacing: 1px;
   }
 }
+
+/* Ajustar el color del texto del h1 en modo claro para mejorar contraste */
+[data-theme="light"] .glitch {
+  color: var(
+    --text-color
+  ); /* Usar el color de texto definido para tema claro (#333333) */
+  text-shadow: 0 0 5px var(--primary-color); /* Mantener el efecto de brillo */
+  -webkit-text-stroke: 1px var(--primary-color); /* Contorno del texto para mejor visibilidad */
+}
+
+/* Mantener visibles los pseudoelementos del efecto glitch en modo claro */
+[data-theme="light"] .glitch::before,
+[data-theme="light"] .glitch::after {
+  color: var(--text-color);
+}
+
+/* Ajustar el color del icono del tema según el modo */
+[data-theme="light"] #theme-icon {
+  stroke: var(
+    --bg-dark
+  ) !important; /* Color oscuro para el icono en modo claro */
+  fill: none;
+}
+
+[data-theme="dark"] #theme-icon {
+  stroke: var(
+    --text-color
+  ) !important; /* Color blanco para el icono en modo oscuro */
+  fill: none;
+}
+
+/* Asegurar que el botón de tema tenga buena visibilidad en ambos modos */
+[data-theme="light"] .theme-toggle {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background-color: rgba(30, 30, 30, 0.8);
+  border-color: var(--primary-color);
+}
