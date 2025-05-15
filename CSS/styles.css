@@ -2002,3 +2002,36 @@ section {
   height: 24px;
   object-fit: contain;
 }
+
+/* Responsive vertical para sección de habilidades */
+@media (max-width: 992px) {
+  .skills-container {
+    grid-template-columns: 1fr; /* Cambia a 1 columna */
+    gap: 30px; /* Reduce el espacio entre tarjetas */
+  }
+
+  .skills-category {
+    min-height: auto; /* Altura automática según contenido */
+    padding: 25px; /* Reduce el padding */
+  }
+}
+
+/* Ajustes adicionales para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .skills-container {
+    gap: 20px; /* Espaciado más compacto */
+  }
+
+  .skills-category {
+    padding: 20px; /* Padding más pequeño */
+  }
+
+  .category-title {
+    font-size: 1.3rem; /* Título más pequeño */
+    margin-bottom: 20px;
+  }
+
+  .skill-item {
+    margin-bottom: 15px; /* Menos espacio entre habilidades */
+  }
+}
