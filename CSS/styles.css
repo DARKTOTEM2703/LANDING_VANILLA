@@ -2261,3 +2261,36 @@ section {
     height: 250px;
   }
 }
+
+/* Ajuste para el timeline en modo claro */
+[data-theme="light"] .timeline-content {
+  background-color: rgba(245, 245, 245, 0.95);
+  border: 1px solid rgba(8, 158, 124, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+}
+
+[data-theme="light"] .timeline-title {
+  color: var(--primary-dark);
+}
+
+[data-theme="light"] .timeline-date {
+  background-color: rgba(8, 158, 124, 0.15);
+  color: var(--primary-dark);
+}
+
+[data-theme="light"] .tech-tag.small {
+  background-color: rgba(245, 245, 245, 0.8);
+  border-color: rgba(8, 158, 124, 0.5);
+  color: var(--text-color);
+}
+
+[data-theme="light"] .tech-tag.small:hover {
+  background-color: rgba(8, 158, 124, 0.1);
+}
+
+/* Ajuste para el hover en modo claro */
+[data-theme="light"] .timeline-content:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-dark);
+}
