@@ -2023,7 +2023,7 @@ section {
     --text-color
   ); /* Usar el color de texto definido para tema claro (#333333) */
   text-shadow: 0 0 5px var(--primary-color); /* Mantener el efecto de brillo */
-  -webkit-text-stroke: 1px var(--primary-color); /* Contorno del texto para mejor visibilidad */
+  -webkit-text-stroke: 0px; /* Contorno del texto para mejor visibilidad */
 }
 
 /* Mantener visibles los pseudoelementos del efecto glitch en modo claro */
